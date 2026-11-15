@@ -1,117 +1,126 @@
-let totalHargaPerHari = 0;
-let jumlahKamera = 0;
+const nomorWhatsAppPemilik = "6285793354882";
+const keranjangAli = [];
+let urutanPesananAli = 0;
 
 function formatRupiah(nilai) {
-  return "Rp" + nilai.toLocaleString("id-ID");
+  return "Rp" + Number(nilai).toLocaleString("id-ID");
 }
 
-function pilihKamera(namaKamera, hargaKamera) {
-  const daftar = document.getElementById("ali_camera_booking_items");
-  const barang = document.createElement("li");
-
-  barang.textContent = namaKamera + " - " + formatRupiah(hargaKamera) + " per hari";
-  daftar.appendChild(barang);
-
-  totalHargaPerHari = totalHargaPerHari + hargaKamera;
-  jumlahKamera = jumlahKamera + 1;
-
-  document.getElementById("ali_camera_count_selected").textContent = jumlahKamera;
-
-  hitungBiaya();
+function hitungJumlahHari() {
+  const mulai = document.getElementById("ali_order_start").value;
+  const selesai = document.getElementById("ali_order_end").value;
+  if (!mulai || !selesai) return { hari: 1, valid: true };
+  const awal = new Date(`${mulai}T00:00:00`);
+  const akhir = new Date(`${selesai}T00:00:00`);
+  const hari = Math.round((akhir - awal) / 86400000) + 1;
+  return { hari, valid: hari > 0 };
 }
 
-function hitungBiaya() {
-  const mulai = document.getElementById("ali_camera_start_date").value;
-  const selesai = document.getElementById("ali_camera_end_date").value;
-  let jumlahHari = 1;
-
-  if (mulai !== "" && selesai !== "") {
-    const tanggalMulai = new Date(mulai);
-    const tanggalSelesai = new Date(selesai);
-    jumlahHari = (tanggalSelesai - tanggalMulai) / 86400000 + 1;
-
-    if (jumlahHari < 1) {
-      document.getElementById("ali_camera_booking_days").textContent =
-        "Tanggal tidak valid";
-      document.getElementById("ali_camera_booking_total").textContent = "-";
-      return;
-    }
-  }
-
-  const totalBayar = totalHargaPerHari * jumlahHari;
-
-  document.getElementById("ali_camera_booking_days").textContent =
-    jumlahHari + " hari";
-
-  document.getElementById("ali_camera_booking_total").textContent =
-    formatRupiah(totalBayar);
+function tambahKeKeranjang(nama, harga) {
+  keranjangAli.push({ id: ++urutanPesananAli, nama, harga });
+  renderKeranjang();
+  document.getElementById("ali_section_pesanan").scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-function formatTanggal(tanggal) {
-  if (tanggal === "") {
-    return "Belum dipilih";
-  }
+function hapusDariKeranjang(id) {
+  const index = keranjangAli.findIndex((barang) => barang.id === id);
+  if (index !== -1) keranjangAli.splice(index, 1);
+  renderKeranjang();
+}
 
-  const tanggalLokal = new Date(tanggal + "T00:00:00");
-  return tanggalLokal.toLocaleDateString("id-ID", {
-    day: "numeric",
-    month: "long",
-    year: "numeric"
+function kosongkanKeranjang() {
+  keranjangAli.length = 0;
+  renderKeranjang();
+}
+
+function renderKeranjang() {
+  const daftar = document.getElementById("ali_cart_items");
+  const kosong = document.getElementById("ali_cart_empty");
+  const subtotal = keranjangAli.reduce((jumlah, barang) => jumlah + barang.harga, 0);
+  const hitungan = hitungJumlahHari();
+  const hari = hitungan.valid ? hitungan.hari : 1;
+  daftar.replaceChildren();
+
+  keranjangAli.forEach((barang) => {
+    const item = document.createElement("li");
+    item.className = "ali_cart_item";
+    const detail = document.createElement("div");
+    const nama = document.createElement("strong");
+    const harga = document.createElement("span");
+    nama.textContent = barang.nama;
+    harga.textContent = `${formatRupiah(barang.harga)} / hari`;
+    detail.append(nama, harga);
+    const hapus = document.createElement("button");
+    hapus.type = "button";
+    hapus.className = "ali_remove_item";
+    hapus.textContent = "Hapus";
+    hapus.setAttribute("aria-label", `Hapus ${barang.nama} dari keranjang`);
+    hapus.addEventListener("click", () => hapusDariKeranjang(barang.id));
+    item.append(detail, hapus);
+    daftar.append(item);
+  });
+
+  const jumlah = keranjangAli.length;
+  kosong.hidden = jumlah > 0;
+  document.getElementById("ali_clear_cart").hidden = jumlah === 0;
+  document.getElementById("ali_cart_count").textContent = jumlah;
+  document.getElementById("ali_floating_cart_count").textContent = jumlah;
+  document.getElementById("ali_order_subtotal").textContent = formatRupiah(subtotal);
+  document.getElementById("ali_order_days").textContent = hitungan.valid ? `${hari} hari` : "Tanggal tidak valid";
+  document.getElementById("ali_order_total").textContent = hitungan.valid ? formatRupiah(subtotal * hari) : "Periksa tanggal";
+}
+
+function formatTanggalAli(tanggal) {
+  return new Date(`${tanggal}T00:00:00`).toLocaleDateString("id-ID", {
+    day: "numeric", month: "long", year: "numeric"
   });
 }
 
-function kirimPesan(event) {
-  event.preventDefault();
-
-  const nama = document.getElementById("ali_contact_input_name").value;
-  const email = document.getElementById("ali_contact_input_email").value;
-  const pesan = document.getElementById("ali_contact_input_message").value;
-  const mulai = document.getElementById("ali_camera_start_date").value;
-  const selesai = document.getElementById("ali_camera_end_date").value;
-
-  if (mulai !== "" && selesai !== "" && selesai < mulai) {
-    alert("Tanggal selesai sewa tidak boleh lebih awal dari tanggal mulai.");
-    return;
-  }
-
-  // Ganti dengan nomor WhatsApp pemilik: kode negara + nomor, tanpa tanda + atau spasi.
-  // Contoh format Indonesia: 6281234567890
-  const nomorWhatsAppPemilik = "6285793354882";
-
-  if (nomorWhatsAppPemilik.includes("x")) {
-    alert("Isi nomor WhatsApp pemilik website di script.js terlebih dahulu.");
-    return;
-  }
-
-  hitungBiaya();
-
-  const pilihan = Array.from(
-    document.querySelectorAll("#ali_camera_booking_items li")
-  ).map((barang, index) => `${index + 1}. ${barang.textContent}`);
-  const daftarPilihan = pilihan.length > 0
-    ? pilihan.join("\n")
-    : "Belum ada kamera atau paket yang dipilih.";
-  const tanggalMulai = formatTanggal(mulai);
-  const tanggalSelesai = formatTanggal(selesai);
-  const tanggalLengkap = mulai !== "" && selesai !== "";
-  const lamaSewa = document.getElementById("ali_camera_booking_days").textContent;
-  const totalBayar = document.getElementById("ali_camera_booking_total").textContent;
-
-  const ringkasanPesanan = [
-    "RINGKASAN PESANAN",
-    daftarPilihan,
-    `Tanggal mulai: ${tanggalMulai}`,
-    `Tanggal selesai: ${tanggalSelesai}`,
-    `Lama sewa: ${lamaSewa}${tanggalLengkap ? "" : " (perkiraan sementara, tanggal belum lengkap)"}`,
-    `Perkiraan total: ${totalBayar}`
-  ].join("\n");
-
-  const isiPesan = `Halo, saya ${nama} (${email}).\n\n${pesan}\n\n${ringkasanPesanan}`;
-  const linkWhatsApp = "https://wa.me/" + nomorWhatsAppPemilik
-    + "?text=" + encodeURIComponent(isiPesan);
-
-  window.open(linkWhatsApp, "_blank");
+function bukaWhatsAppAli(pesan) {
+  const tautan = `https://wa.me/${nomorWhatsAppPemilik}?text=${encodeURIComponent(pesan)}`;
+  window.open(tautan, "_blank", "noopener,noreferrer");
 }
 
-document.getElementById("ali_camera_start_date").addEventListener("change", hitungBiaya);
-document.getElementById("ali_camera_end_date").addEventListener("change", hitungBiaya);
+function kirimPesanan(event) {
+  event.preventDefault();
+  if (keranjangAli.length === 0) {
+    alert("Pilih kamera atau paket terlebih dahulu.");
+    return;
+  }
+  const nama = document.getElementById("ali_order_name").value.trim();
+  const mulai = document.getElementById("ali_order_start").value;
+  const selesai = document.getElementById("ali_order_end").value;
+  const hitungan = hitungJumlahHari();
+  if (!hitungan.valid) {
+    alert("Tanggal selesai harus sama atau setelah tanggal mulai.");
+    return;
+  }
+  const subtotal = keranjangAli.reduce((jumlah, barang) => jumlah + barang.harga, 0);
+  const pilihanAntar = document.getElementById("ali_order_pickup").value;
+  const catatan = document.getElementById("ali_order_note").value.trim();
+  const daftar = keranjangAli.map((barang, index) => `${index + 1}. ${barang.nama} — ${formatRupiah(barang.harga)}/hari`).join("\n");
+  const pesan = [
+    "Halo Rental Kamera Ali, saya ingin memesan:", "", daftar, "",
+    `Nama: ${nama}`,
+    `Tanggal sewa: ${formatTanggalAli(mulai)} sampai ${formatTanggalAli(selesai)}`,
+    `Lama sewa: ${hitungan.hari} hari`,
+    `Pengambilan: ${pilihanAntar}`,
+    `Subtotal per hari: ${formatRupiah(subtotal)}`,
+    `Perkiraan total: ${formatRupiah(subtotal * hitungan.hari)}`,
+    `Catatan: ${catatan || "-"}`, "",
+    "Mohon konfirmasi ketersediaan dan total akhir. Terima kasih."
+  ].join("\n");
+  bukaWhatsAppAli(pesan);
+}
+
+function kirimPertanyaan(event) {
+  event.preventDefault();
+  const nama = document.getElementById("ali_question_name").value.trim();
+  const pertanyaan = document.getElementById("ali_question_message").value.trim();
+  bukaWhatsAppAli(`Halo Rental Kamera Ali, saya ${nama}.\n\n${pertanyaan}`);
+}
+
+const kolomTanggal = [document.getElementById("ali_order_start"), document.getElementById("ali_order_end")];
+kolomTanggal.forEach((kolom) => kolom.addEventListener("change", renderKeranjang));
+kolomTanggal[0].addEventListener("change", () => { kolomTanggal[1].min = kolomTanggal[0].value; });
+renderKeranjang();

@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Rental Kamera Ali</title>
+  <meta name="theme-color" content="#090909">
+  <meta name="description" content="Sewa kamera, lensa, dan paket Rental Kamera Ali untuk liburan, acara, dan proyek kreatif.">
+  <title>Rental Kamera Ali | Sewa Kamera dan Paket</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <header class="ali_main_header">
-    <div class="ali_header_container">
-      <div class="ali_header_logo">
-        <img class="ali_logo_image" src="images/rental-kamera-ali-logo-2026.png" alt="Logo Rental Kamera Ali, tahun 2026. Instagram hsllhallii, WhatsApp 085793354882.">
-        <span>Rental Kamera Ali</span>
-      </div>
-
-      <nav class="ali_header_nav">
+  <header class="ali_site_header">
+    <div class="ali_header_inner">
+      <a class="ali_brand" href="#ali_section_beranda" aria-label="Rental Kamera Ali, kembali ke beranda">
+        <img src="images/rental-kamera-ali-logo-2026.png" alt="Logo Rental Kamera Ali">
+        <span>Rental Kamera <strong>Ali</strong></span>
+      </a>
+      <nav class="ali_main_nav" aria-label="Navigasi utama">
         <a href="#ali_section_beranda">Beranda</a>
         <a href="#ali_section_kamera">Kamera</a>
         <a href="#ali_section_paket">Paket</a>
@@ -24,258 +24,219 @@
         <a href="#ali_section_tentang">Tentang</a>
         <a href="#ali_section_kontak">Kontak</a>
       </nav>
+      <a class="ali_cart_link" href="#ali_section_pesanan" aria-label="Lihat keranjang">
+        Keranjang <span id="ali_cart_count">0</span>
+      </a>
     </div>
   </header>
 
-  <main class="ali_main_content">
-
-    <!-- Bagian 1: Beranda -->
-    <section class="ali_hero_section" id="ali_section_beranda">
-      <p>RENTAL KAMERA UNTUK CERITAMU</p>
-      <h1>Momen bagus layak diabadikan.</h1>
-      <p>Sewa kamera untuk liburan, acara spesial, atau proyek kreatif.</p>
-      <a class="ali_button_primary" href="#ali_section_kamera">Lihat Kamera</a>
-      <a class="ali_button_primary" href="#ali_section_cara_sewa">Cara Sewa</a>
-    </section>
-
-    <!-- Bagian 2: Kamera -->
-    <section class="ali_content_section" id="ali_section_kamera">
-      <h2>Pilih kamera dan lensa</h2>
-      <p>Harga di bawah adalah  harga sewa per hari dan harga paket.</p>
-
-      <label for="ali_camera_start_date">Tanggal mulai sewa</label>
-      <input class="ali_form_input" type="date" id="ali_camera_start_date">
-
-      <label for="ali_camera_end_date">Tanggal selesai sewa</label>
-      <input class="ali_form_input" type="date" id="ali_camera_end_date">
-
-      <div class="ali_card_grid">
-        <article class="ali_card_item">
-          <img class="ali_product_image" src="images/soft/sony-a6400-white.jpg" alt="Kamera Sony A6400 berlatar putih">
-          <h3>Sony A6400</h3>
-          <p>Mirrorless · 24.2 MP</p>
-          <p class="ali_price_text">Rp125.000 / hari</p>
-          <button class="ali_button_primary"
-            onclick="pilihKamera('Sony A6400', 125000)">
-            Pilih kamera
-          </button>
-        </article>
-
-        <article class="ali_card_item">
-          <img class="ali_product_image" src="images/soft/canon-eos-m50-ii.png" alt="Kamera Canon EOS M50 II">
-          <h3>Canon EOS M50 II</h3>
-          <p>Mirrorless · 24.1 MP</p>
-          <p class="ali_price_text">Rp110.000 / hari</p>
-          <button class="ali_button_primary"
-            onclick="pilihKamera('Canon EOS M50 II', 110000)">
-            Pilih kamera
-          </button>
-        </article>
-
-        <article class="ali_card_item">
-          <img class="ali_product_image" src="images/soft/canon-eos-200d.webp" alt="Kamera Canon EOS 200D">
-          <h3>Canon EOS 200D</h3>
-          <p>DSLR · 24.2 MP</p>
-          <p class="ali_price_text">Rp85.000 / hari</p>
-          <button class="ali_button_primary"
-            onclick="pilihKamera('Canon EOS 200D', 85000)">
-            Pilih kamera
-          </button>
-        </article>
-
-        <article class="ali_card_item">
-          <img class="ali_product_image" src="images/soft/sigma-30mm-f14.png" alt="Lensa Sigma 30mm f/1.4">
-          <h3>Sigma 30mm f/1.4</h3>
-          <p>Lensa · Mount Sony E</p>
-          <p class="ali_price_text">Rp65.000 / hari</p>
-          <button class="ali_button_primary"
-            onclick="pilihKamera('Sigma 30mm f/1.4', 65000)">
-            Pilih lensa
-          </button>
-        </article>
+  <main>
+    <section class="ali_hero" id="ali_section_beranda">
+      <div class="ali_hero_content">
+        <p class="ali_eyebrow">RENTAL KAMERA UNTUK CERITAMU</p>
+        <h1>Momen bagus<br>layak <span>diabadikan.</span></h1>
+        <p class="ali_hero_description">Sewa kamera, lensa, dan paket lengkap untuk liburan, acara spesial, atau proyek kreatif. Pilih, hitung, lalu pesan langsung via WhatsApp.</p>
+        <div class="ali_hero_actions">
+          <a class="ali_button ali_button_primary" href="#ali_section_kamera">Lihat Kamera</a>
+          <a class="ali_button ali_button_secondary" href="#ali_section_cara_sewa">Cara Sewa</a>
+        </div>
+        <div class="ali_hero_stats" aria-label="Informasi layanan">
+          <div><strong>3</strong><span>Kamera pilihan</span></div>
+          <div><strong>3</strong><span>Paket sewa</span></div>
+          <div><strong>24 jam</strong><span>Hitungan per hari</span></div>
+        </div>
       </div>
-
+      <a class="ali_scroll_hint" href="#ali_section_kamera" aria-label="Gulir ke katalog kamera"><span></span></a>
     </section>
 
-    <!-- Bagian 3: Paket -->
-    <section class="ali_content_section" id="ali_section_paket">
-      <h2>Paket sewa</h2>
-
-      <div class="ali_card_grid">
-        <article class="ali_card_item">
-          <img class="ali_product_image" src="images/soft/canon-eos-m50-ii.png" alt="Paket Jalan-Jalan dengan kamera Canon EOS M50 II">
-          <h3>Jalan-Jalan</h3>
-          <p>Canon EOS M50 II, lensa kit, baterai cadangan, dan tas.</p>
-          <div class="ali_accessories" aria-label="Barang dalam Paket Jalan-Jalan">
-            <figure class="ali_accessory_item">
-              <img src="images/soft/canon-ef-m-15-45-kit-lens.webp" alt="Lensa kit Canon EF-M 15-45mm">
-              <figcaption>Lensa kit</figcaption>
-            </figure>
-            <figure class="ali_accessory_item">
-              <img src="images/soft/canon-lp-e12-battery.webp" alt="Baterai cadangan Canon LP-E12">
-              <figcaption>Baterai cadangan</figcaption>
-            </figure>
-            <figure class="ali_accessory_item">
-              <img src="images/soft/camera-bag.jpg" alt="Tas kamera">
-              <figcaption>Tas kamera</figcaption>
-            </figure>
+    <section class="ali_section ali_catalog_section" id="ali_section_kamera">
+      <div class="ali_section_heading">
+        <p class="ali_eyebrow">KATALOG</p>
+        <h2>Pilih kamera dan lensa</h2>
+        <p>Harga sewa per hari. Tekan <strong>Tambah</strong> untuk memasukkan barang ke keranjang.</p>
+      </div>
+      <div class="ali_product_grid">
+        <article class="ali_product_card">
+          <div class="ali_product_photo"><img src="images/soft/sony-a6400-white.jpg" alt="Kamera Sony A6400"></div>
+          <div class="ali_product_body">
+            <span class="ali_category">Mirrorless</span>
+            <h3>Sony A6400</h3>
+            <p>24.2 MP · video 4K · layar flip</p>
+            <div class="ali_product_footer"><strong>Rp125.000 <small>/ hari</small></strong><button class="ali_button ali_add_button" type="button" onclick="tambahKeKeranjang('Sony A6400', 125000)">Tambah</button></div>
           </div>
-          <p class="ali_price_text">Rp150.000 / hari</p>
-          <button class="ali_button_primary"
-            onclick="pilihKamera('Paket Jalan-Jalan', 150000)">
-            Pilih paket
-          </button>
         </article>
-
-        <article class="ali_card_item">
-          <img class="ali_product_image" src="images/soft/sony-a6400-white.jpg" alt="Paket Creator Kit dengan kamera Sony A6400 berlatar putih">
-          <h3>Creator Kit</h3>
-          <p>Sony A6400, tripod mini, dan mikrofon.</p>
-          <div class="ali_accessories" aria-label="Barang dalam Paket Creator Kit">
-            <figure class="ali_accessory_item">
-              <img src="images/soft/joby-mini-tripod.webp" alt="Tripod mini JOBY GorillaPod">
-              <figcaption>Tripod mini</figcaption>
-            </figure>
-            <figure class="ali_accessory_item">
-              <img src="images/soft/saramonic-mini-microphone.jpg" alt="Mikrofon mini untuk kamera">
-              <figcaption>Mikrofon</figcaption>
-            </figure>
+        <article class="ali_product_card">
+          <div class="ali_product_photo"><img src="images/soft/canon-eos-m50-ii.png" alt="Kamera Canon EOS M50 II"></div>
+          <div class="ali_product_body">
+            <span class="ali_category">Mirrorless</span>
+            <h3>Canon EOS M50 II</h3>
+            <p>24.1 MP · nyaman untuk vlog</p>
+            <div class="ali_product_footer"><strong>Rp110.000 <small>/ hari</small></strong><button class="ali_button ali_add_button" type="button" onclick="tambahKeKeranjang('Canon EOS M50 II', 110000)">Tambah</button></div>
           </div>
-          <p class="ali_price_text">Rp225.000 / hari</p>
-          <button class="ali_button_primary"
-            onclick="pilihKamera('Paket Creator Kit', 225000)">
-            Pilih paket
-          </button>
         </article>
-
-        <article class="ali_card_item">
-          <img class="ali_product_image" src="images/soft/canon-eos-200d.webp" alt="Paket Acara dan Potret dengan kamera Canon EOS 200D">
-          <h3>Acara dan Potret</h3>
-          <p>Canon EOS 200D, lensa potret, dan flash.</p>
-          <div class="ali_accessories" aria-label="Barang dalam Paket Acara dan Potret">
-            <figure class="ali_accessory_item">
-              <img src="images/soft/canon-ef-50mm-portrait.webp" alt="Lensa potret Canon EF 50mm">
-              <figcaption>Lensa potret</figcaption>
-            </figure>
-            <figure class="ali_accessory_item">
-              <img src="images/soft/canon-speedlite-flash.webp" alt="Flash Canon Speedlite">
-              <figcaption>Flash</figcaption>
-            </figure>
+        <article class="ali_product_card">
+          <div class="ali_product_photo"><img src="images/soft/canon-eos-200d.webp" alt="Kamera Canon EOS 200D"></div>
+          <div class="ali_product_body">
+            <span class="ali_category">DSLR</span>
+            <h3>Canon EOS 200D</h3>
+            <p>24.2 MP · ringan untuk pemula</p>
+            <div class="ali_product_footer"><strong>Rp85.000 <small>/ hari</small></strong><button class="ali_button ali_add_button" type="button" onclick="tambahKeKeranjang('Canon EOS 200D', 85000)">Tambah</button></div>
           </div>
-          <p class="ali_price_text">Rp190.000 / hari</p>
-          <button class="ali_button_primary"
-            onclick="pilihKamera('Paket Acara dan Potret', 190000)">
-            Pilih paket
-          </button>
+        </article>
+        <article class="ali_product_card">
+          <div class="ali_product_photo"><img src="images/soft/sigma-30mm-f14.png" alt="Lensa Sigma 30mm f/1.4"></div>
+          <div class="ali_product_body">
+            <span class="ali_category">Lensa</span>
+            <h3>Sigma 30mm f/1.4</h3>
+            <p>Mount Sony E · bokeh lembut</p>
+            <div class="ali_product_footer"><strong>Rp65.000 <small>/ hari</small></strong><button class="ali_button ali_add_button" type="button" onclick="tambahKeKeranjang('Sigma 30mm f/1.4', 65000)">Tambah</button></div>
+          </div>
         </article>
       </div>
     </section>
 
-    <section class="ali_rental_summary" aria-labelledby="ali_booking_summary_title">
-      <h2 id="ali_booking_summary_title">Ringkasan pesanan</h2>
-      <p>Jumlah pilihan: <strong id="ali_camera_count_selected">0</strong></p>
-      <ul id="ali_camera_booking_items"></ul>
-      <p>Lama sewa: <strong id="ali_camera_booking_days">1 hari</strong></p>
-      <p>Total biaya: <strong id="ali_camera_booking_total">Rp0</strong></p>
-      <button class="ali_button_primary" onclick="hitungBiaya()">
-        Hitung total
-      </button>
-    </section>
-
-    <!-- Bagian 4: Cara Sewa -->
-    <section class="ali_content_section" id="ali_section_cara_sewa">
-      <h2>Cara sewa</h2>
-
-      <div class="ali_card_grid">
-        <article class="ali_card_item">
-          <h3>1. Pilih kamera</h3>
-          <p>Pilih kamera atau lensa yang kamu perlukan.</p>
+    <section class="ali_section ali_package_section" id="ali_section_paket">
+      <div class="ali_section_heading">
+        <p class="ali_eyebrow">LEBIH HEMAT</p>
+        <h2>Paket sewa</h2>
+        <p>Satu paket berisi perlengkapan yang saling melengkapi.</p>
+      </div>
+      <div class="ali_package_grid">
+        <article class="ali_package_card">
+          <div class="ali_package_photo"><img src="images/soft/canon-eos-m50-ii.png" alt="Canon EOS M50 II untuk Paket Jalan-Jalan"></div>
+          <div class="ali_package_body">
+            <h3>Jalan-Jalan</h3>
+            <p>Canon EOS M50 II dengan lensa kit, baterai cadangan, dan tas.</p>
+            <div class="ali_included_items">
+              <figure><img src="images/soft/canon-ef-m-15-45-kit-lens.webp" alt=""><figcaption>Lensa kit</figcaption></figure>
+              <figure><img src="images/soft/canon-lp-e12-battery.webp" alt=""><figcaption>Baterai</figcaption></figure>
+              <figure><img src="images/soft/camera-bag.jpg" alt=""><figcaption>Tas kamera</figcaption></figure>
+            </div>
+            <div class="ali_package_footer"><strong>Rp150.000 <small>/ hari</small></strong><button class="ali_button ali_add_button" type="button" onclick="tambahKeKeranjang('Paket Jalan-Jalan', 150000)">Tambah</button></div>
+          </div>
         </article>
-
-        <article class="ali_card_item">
-          <h3>2. Pilih tanggal</h3>
-          <p>Masukkan tanggal mulai dan selesai sewa.</p>
+        <article class="ali_package_card ali_package_featured">
+          <span class="ali_popular_badge">Favorit</span>
+          <div class="ali_package_photo"><img src="images/soft/sony-a6400-white.jpg" alt="Sony A6400 untuk Paket Creator Kit"></div>
+          <div class="ali_package_body">
+            <h3>Creator Kit</h3>
+            <p>Sony A6400 dengan tripod mini dan mikrofon untuk membuat konten.</p>
+            <div class="ali_included_items">
+              <figure><img src="images/soft/joby-mini-tripod.webp" alt=""><figcaption>Tripod mini</figcaption></figure>
+              <figure><img src="images/soft/saramonic-mini-microphone.jpg" alt=""><figcaption>Mikrofon</figcaption></figure>
+            </div>
+            <div class="ali_package_footer"><strong>Rp225.000 <small>/ hari</small></strong><button class="ali_button ali_add_button" type="button" onclick="tambahKeKeranjang('Paket Creator Kit', 225000)">Tambah</button></div>
+          </div>
         </article>
-
-        <article class="ali_card_item">
-          <h3>3. Hitung biaya</h3>
-          <p>Lihat perkiraan total biaya pada ringkasan.</p>
-        </article>
-
-        <article class="ali_card_item">
-          <h3>4. Hubungi kami</h3>
-          <p>Konfirmasi ketersediaan dan syarat sewa.</p>
+        <article class="ali_package_card">
+          <div class="ali_package_photo"><img src="images/soft/canon-eos-200d.webp" alt="Canon EOS 200D untuk Paket Acara dan Potret"></div>
+          <div class="ali_package_body">
+            <h3>Acara &amp; Potret</h3>
+            <p>Canon EOS 200D dengan lensa potret 50mm dan flash.</p>
+            <div class="ali_included_items">
+              <figure><img src="images/soft/canon-ef-50mm-portrait.webp" alt=""><figcaption>Lensa 50mm</figcaption></figure>
+              <figure><img src="images/soft/canon-speedlite-flash.webp" alt=""><figcaption>Flash</figcaption></figure>
+            </div>
+            <div class="ali_package_footer"><strong>Rp190.000 <small>/ hari</small></strong><button class="ali_button ali_add_button" type="button" onclick="tambahKeKeranjang('Paket Acara dan Potret', 190000)">Tambah</button></div>
+          </div>
         </article>
       </div>
     </section>
 
-    <!-- Bagian 5: Panduan -->
-    <section class="ali_content_section" id="ali_section_panduan">
-      <h2>Panduan memilih kamera</h2>
-
-      <div class="ali_card_grid">
-        <article class="ali_card_item">
-          <h3>Untuk liburan</h3>
-          <p>Pilih kamera yang ringan dan mudah dibawa.</p>
-        </article>
-
-        <article class="ali_card_item">
-          <h3>Untuk vlog</h3>
-          <p>Perhatikan layar kamera dan dukungan mikrofon.</p>
-        </article>
-
-        <article class="ali_card_item">
-          <h3>Untuk foto potret</h3>
-          <p>Tanyakan lensa yang cocok untuk memotret orang.</p>
-        </article>
+    <section class="ali_section ali_order_section" id="ali_section_pesanan">
+      <div class="ali_section_heading">
+        <p class="ali_eyebrow">KERANJANG</p>
+        <h2>Ringkasan &amp; pemesanan</h2>
+        <p>Pilih tanggal dan isi nama. Pesanan lengkap akan disiapkan di WhatsApp.</p>
+      </div>
+      <div class="ali_order_layout">
+        <div class="ali_cart_panel">
+          <div class="ali_panel_heading"><h3>Barang dipilih</h3><button class="ali_text_button" id="ali_clear_cart" type="button" onclick="kosongkanKeranjang()" hidden>Kosongkan</button></div>
+          <div class="ali_cart_empty" id="ali_cart_empty">
+            <p>Keranjang masih kosong.</p>
+            <a class="ali_button ali_button_secondary" href="#ali_section_kamera">Pilih kamera</a>
+          </div>
+          <ul class="ali_cart_list" id="ali_cart_items" aria-live="polite"></ul>
+          <div class="ali_cart_totals">
+            <div><span>Subtotal per hari</span><strong id="ali_order_subtotal">Rp0</strong></div>
+            <div><span>Lama sewa</span><strong id="ali_order_days">1 hari</strong></div>
+            <div class="ali_total_row"><span>Total</span><strong id="ali_order_total">Rp0</strong></div>
+          </div>
+        </div>
+        <form class="ali_order_form" id="ali_order_form" onsubmit="kirimPesanan(event)">
+          <div class="ali_date_fields">
+            <label>Mulai sewa<input class="ali_form_input" type="date" id="ali_order_start" required></label>
+            <label>Selesai sewa<input class="ali_form_input" type="date" id="ali_order_end" required></label>
+          </div>
+          <label>Nama lengkap<input class="ali_form_input" type="text" id="ali_order_name" placeholder="Nama kamu" required></label>
+          <label>Pengambilan
+            <select class="ali_form_input" id="ali_order_pickup">
+              <option value="Ambil di tempat">Ambil di tempat</option>
+              <option value="Antar ke alamat (ongkir menyusul)">Antar ke alamat (ongkir menyusul)</option>
+            </select>
+          </label>
+          <label>Catatan <span class="ali_optional">(opsional)</span><textarea class="ali_form_input" id="ali_order_note" rows="3" placeholder="Misal: butuh memory card tambahan"></textarea></label>
+          <p class="ali_form_hint">Pesanan dikonfirmasi admin setelah ketersediaan dicek.</p>
+          <button class="ali_button ali_button_primary ali_order_submit" type="submit">Pesan via WhatsApp</button>
+        </form>
       </div>
     </section>
 
-    <!-- Bagian 6: Tentang -->
-    <section class="ali_content_section" id="ali_section_tentang">
-      <h2>Tentang Rental Kamera Ali</h2>
-      <p>
-        Rental Kamera Ali menyediakan pilihan kamera dan paket sewa
-        untuk kebutuhan foto, video, liburan, dan acara.
-      </p>
-      <p>Hubungi kami untuk menanyakan ketersediaan dan syarat sewa.</p>
+    <section class="ali_section" id="ali_section_cara_sewa">
+      <div class="ali_section_heading">
+        <p class="ali_eyebrow">MUDAH &amp; CEPAT</p>
+        <h2>Cara sewa</h2>
+      </div>
+      <div class="ali_steps_grid">
+        <article><span>01</span><h3>Pilih barang</h3><p>Tambahkan kamera, lensa, atau paket ke keranjang.</p></article>
+        <article><span>02</span><h3>Atur tanggal</h3><p>Isi tanggal mulai dan selesai. Total dihitung otomatis.</p></article>
+        <article><span>03</span><h3>Kirim ke WhatsApp</h3><p>Periksa ringkasan dan kirim pesanan lengkap ke admin.</p></article>
+        <article><span>04</span><h3>Ambil &amp; berkarya</h3><p>Konfirmasi jadwal dan syarat sewa sebelum pengambilan.</p></article>
+      </div>
     </section>
 
-    <!-- Bagian 7: Kontak -->
-    <section class="ali_content_section" id="ali_section_kontak">
-      <h2>Kontak kami</h2>
-      <p>Isi form ini untuk membuat pesan kepada pemilik website.</p>
+    <section class="ali_section ali_guide_section" id="ali_section_panduan">
+      <div class="ali_section_heading">
+        <p class="ali_eyebrow">PANDUAN</p>
+        <h2>Kamera mana yang cocok?</h2>
+      </div>
+      <div class="ali_guide_grid">
+        <article><span aria-hidden="true">🏖️</span><h3>Untuk liburan</h3><p>Pilih kamera yang ringan dan mudah dibawa. Rekomendasi: <a href="#ali_section_paket">Paket Jalan-Jalan</a>.</p></article>
+        <article><span aria-hidden="true">🎬</span><h3>Untuk vlog</h3><p>Perhatikan layar flip dan dukungan mikrofon. Rekomendasi: <a href="#ali_section_paket">Creator Kit</a>.</p></article>
+        <article><span aria-hidden="true">📸</span><h3>Untuk potret</h3><p>Lensa 50mm membantu menghasilkan latar yang blur. Rekomendasi: <a href="#ali_section_paket">Acara &amp; Potret</a>.</p></article>
+      </div>
+    </section>
 
-      <form onsubmit="kirimPesan(event)">
-        <label for="ali_contact_input_name">Nama</label>
-        <input class="ali_form_input" type="text" id="ali_contact_input_name" required>
+    <section class="ali_section ali_about_section" id="ali_section_tentang">
+      <div class="ali_about_copy">
+        <p class="ali_eyebrow">TENTANG KAMI</p>
+        <h2>Rental Kamera Ali</h2>
+        <p>Kami menyediakan kamera, lensa, dan paket sewa untuk kebutuhan foto, video, liburan, dan acara. Semua perlengkapan ditampilkan beserta harga sewa per hari.</p>
+      </div>
+      <div class="ali_social_links">
+        <a href="https://wa.me/6285793354882" target="_blank" rel="noopener noreferrer"><span>WhatsApp</span><strong>0857-9335-4882 ↗</strong></a>
+        <a href="https://instagram.com/hsllhallii" target="_blank" rel="noopener noreferrer"><span>Instagram</span><strong>@hsllhallii ↗</strong></a>
+      </div>
+    </section>
 
-        <label for="ali_contact_input_email">Email kamu</label>
-        <input class="ali_form_input" type="email" id="ali_contact_input_email" required>
-
-        <label for="ali_contact_input_message">Pesan</label>
-        <textarea class="ali_form_input" id="ali_contact_input_message"
-          rows="4" required></textarea>
-
-        <button class="ali_button_primary" type="submit">Kirim pesan</button>
-        <p class="ali_message_text" id="ali_contact_form_message"></p>
+    <section class="ali_section ali_contact_section" id="ali_section_kontak">
+      <div class="ali_contact_intro">
+        <p class="ali_eyebrow">KONTAK</p>
+        <h2>Ada pertanyaan?</h2>
+        <p>Kirim pertanyaan, atau hubungi kami langsung melalui WhatsApp dan Instagram.</p>
+      </div>
+      <form class="ali_contact_form" onsubmit="kirimPertanyaan(event)">
+        <label>Nama<input class="ali_form_input" type="text" id="ali_question_name" placeholder="Nama kamu" required></label>
+        <label>Pesan<textarea class="ali_form_input" id="ali_question_message" rows="3" placeholder="Tulis pertanyaanmu" required></textarea></label>
+        <button class="ali_button ali_button_secondary" type="submit">Tanya via WhatsApp</button>
       </form>
-
-      <p>Pesan dari formulir akan disiapkan untuk dikirim melalui WhatsApp.</p>
     </section>
   </main>
 
-  <footer class="ali_main_footer">
-    <p>Rental Kamera Ali — Teman ceritamu di setiap momen.</p>
+  <footer class="ali_footer">
+    <p>© 2026 Rental Kamera Ali — Teman ceritamu di setiap momen.</p>
   </footer>
-
+  <a class="ali_floating_cart" href="#ali_section_pesanan" aria-label="Lihat keranjang pesanan">Keranjang <span id="ali_floating_cart_count">0</span></a>
   <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
